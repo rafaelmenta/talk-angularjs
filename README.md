@@ -41,7 +41,7 @@ Mar 11th, 2014
 ## Overview
 
 - Created by Google, maintained by community
-- MVW architecture
+- MVW (Model View Whatever) architecture
 - Lets you extend HTML vocabulary
 - JS and HTML codes on where they belong
 - Dependency Injection
@@ -75,7 +75,7 @@ Bad | Good
   - ng-model
   - {{ }}
 
-```
+```html
 <html ng-app>
 [...]
 <input type="text" ng-model="yourName" placeholder="Enter a name here">
@@ -97,7 +97,7 @@ Bad | Good
 
 ## Controllers
 
-```
+```html
 <div ng-controller="MagicCtrl">
   <button ng-click="doTheMagic" />
   <span ng-show="magicText"> Including {{ magicText }}</span>
@@ -107,7 +107,7 @@ Bad | Good
 </div>
 ```
 
-```
+```javascript
 function MagicCtrl($scope) {
   $scope.texts = [
     'Abra',
@@ -137,7 +137,7 @@ function MagicCtrl($scope) {
 
 ## Services
 
-```
+```javascript
 angular.module('myModule').service('MagicService', function() {
   var magicTexts = [
     'Abra',
@@ -150,7 +150,7 @@ angular.module('myModule').service('MagicService', function() {
 });
 ```
 
-```
+```javascript
 function MagicCtrl($scope, MagicService) {
   $scope.texts = [];
 
@@ -169,14 +169,14 @@ function MagicCtrl($scope, MagicService) {
 
 > AngularJS services are REST-friendly :)
 
-```
+```javascript
 angular.module('mod', ['ngResource']).factory('Magic', function($resource){
   return $resource('path/to/magic/');
   // You can also set some params on path or headers
   // Alternatively you can use $http.get('path/to', successHandler)
 });
 ```
-```
+```javascript
 function MagicCtrl($scope, MagicService) {
   $scope.texts = [];
 
@@ -203,17 +203,17 @@ or its children.
 
 ## Directives
 
-```
+```html
 <ul ng-repeat="user in users">
   [...]
 </ul>
 ```
 
-```
+```html
 <p ng-hide="hideMe">[...]</p>
 ```
 
-```
+```html
 <ng-view>
  [...]
 </ng-view>
@@ -230,7 +230,7 @@ or its children.
 ## Routes
 
 - Deep-linking URL to controllers and views
-- Give a better experience on SPA
+- Give a better experience on SPA (Single-Page Application)
 - Full manipulation (reload, intercept, history) on application
 
 ```javascript
@@ -266,6 +266,17 @@ angular.module('todoList', []).config(function($routeProvider) {
 
 ---
 
+## Reference & Guidance
+
+- http://docs.angularjs.org/guide
+- http://angular-ui.github.io/
+  - http://angular-ui.github.io/bootstrap/
+- http://www.cheatography.com/proloser/cheat-sheets/angularjs/
+- http://directivemaker.info/#!/
+- Stack Overflow & Github :)
+
+---
+
 ## Challenge
 
 - You will create an AngularJS application to check current weather on a given city name
@@ -275,17 +286,6 @@ angular.module('todoList', []).config(function($routeProvider) {
 - Extra points for those who add Geolocation to the API ;)
 
 *Submit the code on your Github account*
-
----
-
-## Reference & Guidance
-
-- http://docs.angularjs.org/guide
-- http://angular-ui.github.io/
-  - http://angular-ui.github.io/bootstrap/
-- http://www.cheatography.com/proloser/cheat-sheets/angularjs/
-- http://directivemaker.info/#!/
-- Stack Overflow & Github :)
 
 ---
 
