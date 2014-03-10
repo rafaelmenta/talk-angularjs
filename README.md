@@ -21,12 +21,12 @@ Mar 11th, 2014
 ## Agenda
 
  - Overview
- - Controller
- - Service
- - Directive
- - Route
- - Testing
+ - Controllers
+ - Services
+ - Directives
+ - Routes
  - Hands-on
+ - Conclusion
  - Challenge
 
 ----
@@ -53,7 +53,7 @@ Mar 11th, 2014
 
 
 Bad | Good
---- | ---
+--- | ----
 <img src="img/oneway.png" /> | <img src="img/twoway.png" />
 
 ----
@@ -168,3 +168,127 @@ function MagicCtrl($scope, MagicService) {
 ## Services
 
 > AngularJS services are REST-friendly :)
+
+```
+angular.module('mod', ['ngResource']).factory('Magic', function($resource){
+  return $resource('path/to/magic/');
+  // You can also set some params on path or headers
+  // Alternatively you can use $http.get('path/to', successHandler)
+});
+```
+```
+function MagicCtrl($scope, MagicService) {
+  $scope.texts = [];
+
+  $scope.doTheMagic = function() {
+    MagicService.get().then(function(data) {
+      $scope.magicText = data;
+      $scope.texts.push(data);
+    });
+  };
+};
+```
+
+---
+
+## Directives
+
+> Markers on a DOM element that tell AngularJS to attach some behavior on it
+or its children.
+
+ - Can have its own controller or HTML template
+ - 3 levels of usage: element, attribute or CSS class
+
+----
+
+## Directives
+
+```
+<ul ng-repeat="user in users">
+  [...]
+</ul>
+```
+
+```
+<p ng-hide="hideMe">[...]</p>
+```
+
+```
+<ng-view>
+ [...]
+</ng-view>
+```
+
+- Other examples:
+  - ng-model
+  - ng-href
+  - ng-src
+  - ng-class
+
+---
+
+## Routes
+
+- Deep-linking URL to controllers and views
+- Give a better experience on SPA
+- Full manipulation (reload, intercept, history) on application
+
+```javascript
+angular.module('todoList', []).config(function($routeProvider) {
+  $routeProvider.when('/', {
+    templateUrl : 'views/main.html',
+    controller : 'MainCtrl'
+  }).when('/todo', {
+    templateUrl : 'views/todo.html',
+    controller : 'TodoCtrl'
+  }).otherwise({
+    redirectTo : '/'
+  });
+});
+
+```
+
+---
+
+## Hands-on
+
+- Basic To-Do application
+- Scaffolding an AngularJS app on Yeoman
+
+---
+
+## Conclusion
+
+- Full client-side MVW framework
+- A "new" declarative way of working with Javascript
+- Provides a large toolset to build simple and complex applications
+- Great community contributing on its extension and maintenance
+
+---
+
+## Challenge
+
+- You will create an AngularJS application to check current weather on a given city name
+- Use following API
+  - http://api.openweathermap.org/data/2.5/weather?q=Belo%20Horizonte
+- Let your imagination flies and use directives to create CSS/image changes
+- Extra points for those who add Geolocation to the API ;)
+
+*Submit the code on your Github account*
+
+---
+
+## Reference & Guidance
+
+- http://docs.angularjs.org/guide
+- http://angular-ui.github.io/
+  - http://angular-ui.github.io/bootstrap/
+- http://www.cheatography.com/proloser/cheat-sheets/angularjs/
+- http://directivemaker.info/#!/
+- Stack Overflow & Github :)
+
+---
+
+# Thank you!
+
+Questions?
